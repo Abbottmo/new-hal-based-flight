@@ -48,13 +48,64 @@
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
+#define LED_NUM 4
+#define LA	    0x01
+#define LB      0x02
+#define LC      0x04
+#define LD      0x08
+//
+#define E_READY 		   0
+#define E_CALI			   1
+#define E_BAT_LOW		   2
+#define E_CALI_FAIL	   3
+#define E_LOST_RC 	   4
+#define E_AUTO_LANDED  5
+#define E_BatChg       6
 
+
+typedef union{
+	uint8_t byte;
+	struct 
+	{
+			uint8_t A	:1;
+		  uint8_t B	:1;
+			uint8_t C	:1;
+		  uint8_t D	:1;
+			uint8_t reserved	:4;
+	}bits;
+}LEDBuf_t;
+
+typedef struct Led_tt
+{
+uint8_t event;
+uint8_t state;
+uint16_t cnt;
+}LED_t;
+
+
+#define LedA_on    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11, GPIO_PIN_SET)
+#define LedA_off   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11, GPIO_PIN_RESET)
+
+#define LedB_on    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, GPIO_PIN_SET)
+#define LedB_off   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, GPIO_PIN_RESET)
+
+#define LedC_on    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1, GPIO_PIN_SET)
+#define LedC_off   HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1, GPIO_PIN_RESET)
+
+#define LedD_on    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_3, GPIO_PIN_SET)
+#define LedD_off   HAL_GPIO_WritePin(GPIOB,GPIO_PIN_3, GPIO_PIN_RESET)
+
+#define LEDA_troggle HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_11)
+#define LEDB_troggle HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8)
+#define LEDC_troggle HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1)
+
+extern LED_t LEDCtrl;
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void LEDFSM(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -92,7 +92,12 @@ int main(void)
   MX_NVIC_Init();
 
   /* USER CODE BEGIN 2 */
+	Motor_Start();
+	MotorPwmFlash(400,400,400,400);
 	
+//	printf("the SystemCoreClock is : %d\n\r",SystemCoreClock);
+//	printf("the HAL_RCC_GetPCLK1Freq is : %d\n\r",HAL_RCC_GetPCLK1Freq());
+//  printf("the USART1 BaudRate is : %d\n\r",115200);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -102,8 +107,13 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	printf("this is a test prom\n\r");
-		HAL_Delay(1000);
+	  printf("the SystemCoreClock is : %d\n\r",SystemCoreClock);
+	  printf("the HAL_RCC_GetPCLK1Freq is : %d\n\r",HAL_RCC_GetPCLK1Freq());
+    printf("the USART1 BaudRate is : %d\n\r",115200);
+		
+		HAL_Delay(5000);
+	
+	
 
   }
   /* USER CODE END 3 */

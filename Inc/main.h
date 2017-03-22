@@ -41,6 +41,14 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define led_Pin GPIO_PIN_1
+#define led_GPIO_Port GPIOB
+#define ledA8_Pin GPIO_PIN_8
+#define ledA8_GPIO_Port GPIOA
+#define ledA11_Pin GPIO_PIN_11
+#define ledA11_GPIO_Port GPIOA
+#define ledB3_Pin GPIO_PIN_3
+#define ledB3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

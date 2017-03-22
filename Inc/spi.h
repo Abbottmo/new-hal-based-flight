@@ -50,6 +50,11 @@ extern SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN Private defines */
 
+#define SPI_CE_H()   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, GPIO_PIN_SET)
+#define SPI_CE_L()   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, GPIO_PIN_RESET)
+
+#define SPI_CSN_H()  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4, GPIO_PIN_SET)
+#define SPI_CSN_L()  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4, GPIO_PIN_RESET)
 /* USER CODE END Private defines */
 
 extern void Error_Handler(void);

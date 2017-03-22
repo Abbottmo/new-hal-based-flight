@@ -103,6 +103,8 @@ void MX_TIM2_Init(void)
   }
 
   HAL_TIM_MspPostInit(&htim2);
+	
+
 
 }
 /* TIM3 init function */
@@ -225,7 +227,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TIM2_MspPostInit 1 */
-
+    
   /* USER CODE END TIM2_MspPostInit 1 */
   }
 
@@ -287,12 +289,20 @@ void MotorPwmFlash(int16_t MOTO1_PWM,int16_t MOTO2_PWM,int16_t MOTO3_PWM,int16_t
      if(MOTO1_PWM<=0)	MOTO1_PWM = 0;
      if(MOTO2_PWM<=0)	MOTO2_PWM = 0;
      if(MOTO3_PWM<=0)	MOTO3_PWM = 0;
-     if(MOTO4_PWM<=0)	MOTO4_PWM = 0;//????????0,??999
+     if(MOTO4_PWM<=0)	MOTO4_PWM = 0;
     
     TIM2->CCR1 = MOTO1_PWM;
     TIM2->CCR2 = MOTO2_PWM;
     TIM2->CCR3 = MOTO3_PWM;
-    TIM2->CCR4 = MOTO4_PWM;        //?????????
+    TIM2->CCR4 = MOTO4_PWM;        
+}
+
+void Motor_Start(void)
+{
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
 }
 /* USER CODE END 1 */
 

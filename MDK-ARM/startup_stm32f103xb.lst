@@ -496,11 +496,11 @@ ARM Macro Assembler    Page 8
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=..\output\startup_stm32f103xb.d -o..\output\startup_stm32f103xb.o 
--ID:\stm32资料\无人机\主板\fly\MDK-ARM\RTE -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.
-0\CMSIS\Include -Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include -
--predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --prede
-fine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=startup_stm32f103x
-b.lst startup_stm32f103xb.s
+-ID:\stm32资料\无人机\主板\new-hal-based-flight\MDK-ARM\RTE -Id:\Keil_v5\ARM\PA
+CK\ARM\CMSIS\4.3.0\CMSIS\Include -Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0
+\Device\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION 
+SETA 515" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=s
+tartup_stm32f103xb.lst startup_stm32f103xb.s
 
 
 

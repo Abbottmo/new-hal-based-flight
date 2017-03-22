@@ -38,7 +38,15 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-
+//spi接口用于跟NRF24L01通信
+    /**SPI1 GPIO Configuration    
+    PA5     ------> SPI1_SCK
+    PA6     ------> SPI1_MISO
+    PA7     ------> SPI1_MOSI 
+		PA12 CE引脚
+		PA4  CSN引脚
+		PA15 IRQ
+    */
 /* USER CODE END 0 */
 
 SPI_HandleTypeDef hspi1;
@@ -58,7 +66,7 @@ void MX_SPI1_Init(void)
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi1.Init.CRCPolynomial = 10;
+  hspi1.Init.CRCPolynomial = 7;
   if (HAL_SPI_Init(&hspi1) != HAL_OK)
   {
     Error_Handler();
@@ -93,8 +101,18 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN SPI1_MspInit 1 */
+		
 
+  /* USER CODE BEGIN SPI1_MspInit 1 */
+    //CE CSN 引脚初始化
+    GPIO_InitStruct.Pin = GPIO_PIN_4| GPIO_PIN_12 ;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+		
+		SPI_CSN_H();
+		
+		printf("SPI bus init success...\r\n");
   /* USER CODE END SPI1_MspInit 1 */
   }
 }
@@ -125,6 +143,17 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
 
 /* USER CODE BEGIN 1 */
 
+uint8_t SPI_RW(uint8_t dat)
+{
+	uint8_t read;
+	HAL_SPI_Transmit(&hspi1, &dat, 1, 100);
+	 if (HAL_SPI_Receive(&hspi1, &read, 1, 100) != HAL_OK)
+  {
+    Error_Handler();
+  }
+	else 
+		return read;
+}
 /* USER CODE END 1 */
 
 /**

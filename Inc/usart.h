@@ -43,6 +43,23 @@
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
+// USART Receiver buffer
+#define RX_BUFFER_SIZE   128
+#define TX_BUFFER_SIZE   128
+extern unsigned char rx_buffer[RX_BUFFER_SIZE];
+extern unsigned char tx_buffer[TX_BUFFER_SIZE];
+
+
+typedef struct 
+{
+  uint16_t volatile Wd_Indx;
+  uint16_t volatile Rd_Indx;
+  uint16_t Mask;
+  uint8_t *pbuf;
+}UartBuf;
+
+extern UartBuf UartTxbuf;//发送缓冲区
+extern UartBuf UartRxbuf;//接收缓冲区
 
 /* USER CODE END Includes */
 
